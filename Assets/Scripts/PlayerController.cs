@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,6 +10,10 @@ public class PlayerController : MonoBehaviour
     private float turnSpeed = 60;
     private float horizontalInput;
     private float verticalInput;
+
+    public Camera mainCamera;
+    public Camera hoodCamera;
+    public KeyCode switchKey;
 
     // Start is called before the first frame update
     void Start() {}
@@ -26,5 +31,21 @@ public class PlayerController : MonoBehaviour
 
         // Turn Car left and right
         transform.Rotate(Vector3.up, Time.deltaTime * verticalInput * horizontalInput * turnSpeed);
+
+        // Reset scene after falling down
+        if (gameObject.transform.position.y <= -30 || gameObject.transform.position.z > 350 )
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+
+        //Camera
+
+        //Add new Camera option
+        if (Input.GetKeyDown(switchKey))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            hoodCamera.enabled = !hoodCamera.enabled;
+        }
     }
 }

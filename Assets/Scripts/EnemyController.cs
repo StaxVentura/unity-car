@@ -18,5 +18,10 @@ public class EnemyController : MonoBehaviour
     {
         // Move Enemy forward
         transform.Translate(speed * Time.deltaTime * Vector3.forward);
+
+        if (gameObject.transform.position.z < 0)
+        {
+            gameObject.transform.position = new(gameObject.transform.position.x, 1, 350);
+        }
     }
 }
