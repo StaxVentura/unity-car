@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public enum Camera
+    {
+        MAIN,
+        HOOD
+    };
+
     //Public Variables
     public GameObject player;
-    public bool isMainCamera = true;
+    public Camera selectedCamera;
 
     //Private Variables
     private Vector3 mainOffset = new(0, 5, -6);
@@ -22,8 +28,8 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
 
-        transform.position = player.transform.position + (isMainCamera ? mainOffset : hoodOffset);
+        transform.position = player.transform.position + (selectedCamera == Camera.MAIN ? mainOffset : hoodOffset);
 
-        if (!isMainCamera) transform.rotation = player.transform.rotation;
+        if (selectedCamera == Camera.HOOD) transform.rotation = player.transform.rotation;
     }
 }

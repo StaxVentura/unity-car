@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Private variables
+    // Public Variables
+    public Camera mainCamera;
+    public Camera hoodCamera;
+    public KeyCode switchKey;
+
+    // Private variables
     private float speed = 25;
     private float turnSpeed = 60;
     private float horizontalInput;
     private float verticalInput;
-
-    public Camera mainCamera;
-    public Camera hoodCamera;
-    public KeyCode switchKey;
 
     // Start is called before the first frame update
     void Start() {}
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        //Player Inputs
+        // Player Inputs
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
@@ -39,9 +40,8 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        //Camera
-
-        //Add new Camera option
+        // Camera
+        // Add new Camera option
         if (Input.GetKeyDown(switchKey))
         {
             mainCamera.enabled = !mainCamera.enabled;
